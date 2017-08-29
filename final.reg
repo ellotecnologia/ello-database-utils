@@ -1,0 +1,101 @@
+Windows Registry Editor Version 5.00 
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.AbrirISQL]
+@="Abrir iSQL"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.AbrirISQL\command]
+@="C:\\Program Files (x86)\\Firebird\\Firebird_2_5\\bin\\isql.exe \"%1\""
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup]
+@="Gerar Backup"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup\command]
+@="C:\\dev\\ello-utils\\gerar-backup.bat \"%1\""
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.BackupEnviar]
+@="Enviar Backup"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.BackupEnviar\command]
+
+
+[HKEY_CLASSES_ROOT\.fbk]
+@="Ello.Firebird.Backup"
+
+
+[HKEY_CLASSES_ROOT\.ebk]
+@="Ello.Database.Backup"
+
+
+[HKEY_CLASSES_ROOT\.ello]
+@="Ello.Database"
+
+
+[HKEY_CLASSES_ROOT\Ello.Database]
+@="Banco de Dados Ello"
+
+[HKEY_CLASSES_ROOT\Ello.Database\DefaultIcon]
+@="C:\\dev\\ello-utils\\database.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell]
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\manutencao]
+"MUIVerb"="&Manutená∆o"
+"SubCommands"="Ello.Backup;Ello.BackupEnviar;Ello.AbrirISQL"
+"Position"="Bottom"
+"Icon"="C:\\dev\\ello-utils\\database.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\open]
+"Icon"="C:\\dev\\ello-utils\\database.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\open\command]
+@="\"C:\\Program Files (x86)\\FlameRobin\\flamerobin.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\usarbanco]
+@="&Usar este banco"
+"Icon"="C:\\dev\\ello-utils\\database.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\usarbanco\command]
+@="C:\\Python27\\pythonw.exe \"c:\\bin\\usar_banco.py\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\versaobanco]
+"Icon"="C:\\dev\\ello-utils\\database.ico"
+@="Vers∆o do banco"
+
+[HKEY_CLASSES_ROOT\Ello.Database\shell\versaobanco\command]
+@="C:\\Python27\\pythonw.exe \"c:\\bin\\versao_banco.py\" \"%1\""
+
+
+[HKEY_CLASSES_ROOT\Ello.Database.Backup]
+@="Backup Ello"
+
+[HKEY_CLASSES_ROOT\Ello.Database.Backup\DefaultIcon]
+@="C:\\dev\\ello-utils\\ello_backup.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Database.Backup\shell]
+
+[HKEY_CLASSES_ROOT\Ello.Database.Backup\shell\restaurar]
+@="&Restaurar"
+"Icon"="C:\\dev\\ello-utils\\database.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Database.Backup\shell\restaurar\command]
+@="C:\\dev\\ello-utils\\restaura-ebk.bat \"%1\""
+
+
+[HKEY_CLASSES_ROOT\Ello.Firebird.Backup]
+@="Backup Firebird"
+
+[HKEY_CLASSES_ROOT\Ello.Firebird.Backup\DefaultIcon]
+@="C:\\dev\\ello-utils\\database_fbk.ico"
+
+[HKEY_CLASSES_ROOT\Ello.Firebird.Backup\shell]
+
+[HKEY_CLASSES_ROOT\Ello.Firebird.Backup\shell\restaurar]
+"Icon"="C:\\dev\\ello-utils\\database.ico"
+@="&Restaurar"
+
+[HKEY_CLASSES_ROOT\Ello.Firebird.Backup\shell\restaurar\command]
+@="C:\\dev\\ello-utils\\restaura-fbk.bat \"%1\""
+
