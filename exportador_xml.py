@@ -38,7 +38,7 @@ for idnota, chave, xml in q1:
     arquivos = open("{0}/{1}.xml".format(diretorio, chave), 'w')
     arquivos.write(xml.decode('utf8'))
     arquivos.close()
-    q2.execute("UPDATE TNFeNota SET XML_NFE=NULL WHERE IdNota = {0}".format(idnota))
+    q2.execute("UPDATE TNFeNota SET XML_NFE=NULL, XML_LOTE=NULL WHERE IdNota = {0}".format(idnota))
 
 conn.commit()
 
