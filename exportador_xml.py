@@ -15,20 +15,20 @@ diretorio   = input("Informe a pasta de destino dos XMLs: ")
 if not os.path.isdir(diretorio):
   os.mkdir(diretorio)
 
+print("Iniciando exportacao, aguarde...")
+
 # Obtem os XMLs do banco de dados
 q1 = conn.cursor()
 q2 = conn.cursor()
 q1.execute("""
-  SELECT idnota, chave, xml_nfe
+  SELECT empresa, idnota, chave, xml_nfe
   FROM tnfenota
   WHERE dataemissao BETWEEN '{0}' AND '{1}'
     AND modelo='{2}'""".format(data_inicio, data_fim, modelo_dfe)
 )
 
 # Salva XMLs
-for idnota, chave, xml in q1:
-    print(chave)
-
+for id_empresa, id_nota, chave, xml in q1:
     if chave is None:
         continue
 
@@ -38,7 +38,7 @@ for idnota, chave, xml in q1:
     arquivos = open("{0}/{1}.xml".format(diretorio, chave), 'w')
     arquivos.write(xml.decode('utf8'))
     arquivos.close()
-    q2.execute("UPDATE TNFeNota SET XML_NFE=NULL, XML_LOTE=NULL WHERE IdNota = {0}".format(idnota))
+    q2.execute("UPDATE TNFeNota SET XML_NFE=NULL, XML_LOTE=NULL WHERE Empresa={} AND IdNota = {}".format(id_empresa, id_nota))
 
 conn.commit()
 
