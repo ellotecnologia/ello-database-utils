@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ello Database Utils"
-#define MyAppVersion "0.1"
+#define MyAppVersion "0.2"
 #define MyAppPublisher "Ello tecnologia"
 #define MyAppURL "http://www.ellotecnologia.com/"
 
@@ -23,7 +23,7 @@ DisableDirPage=yes
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 OutputBaseFilename=Ello-Database-Utils
-SetupIconFile=C:\dev\ello-database-utils\Icons\database.ico
+SetupIconFile=Icons\database.ico
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes
@@ -33,21 +33,21 @@ ArchitecturesInstallIn64BitMode=x64
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 
 [Files]
-Source: "C:\dev\ello-database-utils\README.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\bin\gbak.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\bin\isql.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\bin\fbclient.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\bin\7za.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\gerar-backup.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\restaura-ebk.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\restaura-fbk.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\usar_banco.py"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\versao_banco.py"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\firebird.msg"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\Icons\database.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\Icons\database_fbk.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\Icons\ello_backup.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
-Source: "C:\dev\ello-database-utils\Installers\*"; DestDir: "{app}\Installers"; Flags: ignoreversion
+Source: "README.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\gbak.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "bin\isql.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "bin\fbclient.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "bin\7za.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "gerar-backup.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "restaura-ebk.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "restaura-fbk.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "usar_banco.py"; DestDir: "{app}"; Flags: ignoreversion
+Source: "versao_banco.py"; DestDir: "{app}"; Flags: ignoreversion
+Source: "firebird.msg"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Icons\database.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
+Source: "Icons\database_fbk.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
+Source: "Icons\ello_backup.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
+Source: "Installers\*"; DestDir: "{app}\Installers"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
