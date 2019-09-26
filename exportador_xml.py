@@ -35,7 +35,9 @@ for id_empresa, id_nota, chave, xml in q1:
     if xml is None:
         continue
 
-    arquivos = open("{0}/{1}.xml".format(diretorio, chave), 'w')
+    print("Salvando XML: {}".format(chave))
+
+    arquivos = open("{0}/{1}-nfe.xml".format(diretorio, chave), 'w')
     arquivos.write(xml.decode('utf8'))
     arquivos.close()
     q2.execute("UPDATE TNFeNota SET XML_NFE=NULL, XML_LOTE=NULL WHERE Empresa={} AND IdNota = {}".format(id_empresa, id_nota))
