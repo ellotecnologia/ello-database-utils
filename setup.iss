@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ello Database Utils"
-#define MyAppVersion "0.2"
+#define MyAppVersion "0.3"
 #define MyAppPublisher "Ello tecnologia"
 #define MyAppURL "http://www.ellotecnologia.com/"
 
@@ -38,17 +38,15 @@ Source: "bin\gbak.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\isql.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\fbclient.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\7za.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "bin\usar_banco.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\versao_banco.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "gerar-backup.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "restaura-ebk.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "restaura-fbk.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "usar_banco.py"; DestDir: "{app}"; Flags: ignoreversion
-Source: "versao_banco.py"; DestDir: "{app}"; Flags: ignoreversion
 Source: "firebird.msg"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Icons\database.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
 Source: "Icons\database_fbk.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
 Source: "Icons\ello_backup.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
-Source: "Installers\*"; DestDir: "{app}\Installers"; Flags: ignoreversion
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.AbrirISQL"; ValueType: string; ValueData: "Abrir iSQL"
@@ -77,11 +75,11 @@ Root: HKCR; Subkey: "Ello.Database\shell\open\command"; Flags: uninsdeletekey; V
 
 Root: HKCR; Subkey: "Ello.Database\shell\usarbanco"; Flags: uninsdeletekey; ValueType: string; ValueData: "&Usar este banco"
 Root: HKCR; Subkey: "Ello.Database\shell\usarbanco"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
-Root: HKCR; Subkey: "Ello.Database\shell\usarbanco\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "C:\Python27\pythonw.exe ""{app}\usar_banco.py"" ""%1"""
+Root: HKCR; Subkey: "Ello.Database\shell\usarbanco\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\usar_banco.exe ""%1"""
 
 Root: HKCR; Subkey: "Ello.Database\shell\versaobanco"; Flags: uninsdeletekey; ValueType: string; ValueData: "Versão do banco"
 Root: HKCR; Subkey: "Ello.Database\shell\versaobanco"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
-Root: HKCR; Subkey: "Ello.Database\shell\versaobanco\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "C:\Python27\pythonw.exe ""{app}\versao_banco.py"" ""%1"""
+Root: HKCR; Subkey: "Ello.Database\shell\versaobanco\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\versao_banco.exe ""%1"""
 
 Root: HKCR; Subkey: "Ello.Database.Backup"; Flags: uninsdeletekey; ValueType: string; ValueData: "Backup Ello"
 Root: HKCR; Subkey: "Ello.Database.Backup\DefaultIcon"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\Icons\ello_backup.ico"
@@ -98,10 +96,6 @@ Root: HKCR; Subkey: "Ello.Firebird.Backup\shell\restaurar\command"; Flags: unins
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\bin"; Check: NeedsAddPath('{app}\bin')
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "ISC_USER"; ValueData: "sysdba"
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "ISC_PASSWORD"; ValueData: "masterkey"
-
-[Run]
-Filename: "msiexec"; Parameters: "/quiet /i ""{app}\Installers\python-2.7.13.msi"""; Description: "Python 2.7.13"
-Filename: "C:\Python27\Scripts\pip"; Parameters: "install ""{app}\Installers\fdb-1.6.1.tar.gz"""; Description: "fdb Library"
 
 [Code]
 function NeedsAddPath(Param: string): boolean;
