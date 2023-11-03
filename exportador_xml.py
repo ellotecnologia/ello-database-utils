@@ -1,19 +1,28 @@
-# encoding: utf-8
 import os.path
+import argparse
 import fdb
 
-# Conexão com o Banco de dados Firebird
-caminho_bd = input("Informe o caminho do Banco de Dados: ")
-conn = fdb.connect(host='localhost', user='sysdba', password='masterkey', database=caminho_bd)
+parser = argparse.ArgumentParser(description='Exporta XMLs de um banco de dados Ello')
+parser.add_argument('--db', help='Caminho do banco de dados')
+parser.add_argument('-i', '--inicio', help='Data de emissão inicial (formato: dd.mm.aaaa)')
+parser.add_argument('-f', '--fim', help='Data de emissão final (formato: dd.mm.aaaa)')
+parser.add_argument('-m', '--modelo', help='Modelo de documentos a serem exportados')
+parser.add_argument('-p', '--pasta-destino', help='Pasta onde salvar os XMLs')
+parser.add_argument('-n', '--nao-remover-xml', action='store_true', default=False, help='Não remover o XML do banco de dados')
 
-data_inicio = input("Informe a data de inicio (ex: 01.01.2019): ")
-data_fim    = input("Informe a data de termino (ex: 31.01.2019): ")
-modelo_dfe  = input("Informe o modelo de DF-e a exportar (ex: 55): ")
-diretorio   = input("Informe a pasta de destino dos XMLs: ")
+args = parser.parse_args()
+
+caminho_bd  = args.db or input("Informe o caminho do Banco de Dados: ")
+data_inicio = args.inicio or input("Informe a data de inicio (ex: 01.01.2019): ")
+data_fim    = args.fim or input("Informe a data de termino (ex: 31.01.2019): ")
+modelo_dfe  = args.modelo or input("Informe o modelo de DF-e a exportar (ex: 55): ")
+diretorio   = args.pasta_destino or input("Informe a pasta de destino dos XMLs: ")
+
+conn = fdb.connect(host='localhost', user='sysdba', password='masterkey', database=caminho_bd)
 
 # Cria o diretório caso não exista
 if not os.path.isdir(diretorio):
-  os.mkdir(diretorio)
+    os.mkdir(diretorio)
 
 print("Iniciando exportacao, aguarde...")
 
@@ -40,7 +49,8 @@ for id_empresa, id_nota, chave, xml in q1:
     try:
         with open("{0}/{1}-nfe.xml".format(diretorio, chave), 'w') as arquivo:
             arquivo.write(xml.decode('utf8'))
-        q2.execute("UPDATE TNFeNota SET XML_NFE=NULL, XML_LOTE=NULL WHERE Empresa={} AND IdNota = {}".format(id_empresa, id_nota))
+        if not args.nao_remover_xml:
+            q2.execute("UPDATE TNFeNota SET XML_NFE=NULL, XML_LOTE=NULL WHERE Empresa={} AND IdNota = {}".format(id_empresa, id_nota))
     except Exception as e:
         print("Erro ao tentar gravar xml da nota {} ({})".format(chave, e))
 
