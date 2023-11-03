@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <ibase.h>
 
-#define ERREXIT(status, rc)	{isc_print_status(status); return rc;}
+#define ERREXIT(status, rc)     {isc_print_status(status); return rc;}
 #define SQL_VARCHAR(len) struct {short vary_length; char vary_string[(len)+1];}
 #define BUFFER_LENGTH 32
 
@@ -87,11 +87,13 @@ int main(int argc, char* argv[])
     char text[64];
     
     FBConnection* conn = fb_connect(argv[1]);
-    query(conn, "SELECT FIRST 1 VERSAO FROM TSCRIPTS ORDER BY ultimoscript desc", version);
-    query(conn, "SELECT Valor FROM TGerParametros WHERE parametro='GERIDSCRIPTRELEASE'", patch_num);
+    query(conn, "SELECT CAST(Valor AS VARCHAR(32)) FROM TGerParametros WHERE parametro='GERVERSAODORELEASE'", version);
+    query(conn, "SELECT CAST(Valor AS VARCHAR(32)) FROM TGerParametros WHERE parametro='GERIDSCRIPTRELEASE'", patch_num);
     fb_close(conn);
     
     sprintf(text, "Versão %s Patch %s", version, patch_num);
     
     MessageBoxA(NULL, text, "Versão do Banco de Dados", MB_OK);
+
+    return 0;
 }
