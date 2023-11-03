@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ello Database Utils"
-#define MyAppVersion "0.3"
+#define MyAppVersion "0.4"
 #define MyAppPublisher "Ello tecnologia"
 #define MyAppURL "http://www.ellotecnologia.com/"
 
@@ -40,9 +40,11 @@ Source: "bin\fbclient.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\7za.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\usar_banco.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bin\versao_banco.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\fbclone.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "gerar-backup.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "restaura-ebk.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "restaura-fbk.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "change_db_charset.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "firebird.msg"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Icons\database.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
 Source: "Icons\database_fbk.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
@@ -56,6 +58,9 @@ Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandS
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup"; Flags: uninsdeletekey; ValueType: string; ValueData: "Gerar Backup"
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\gerar-backup.bat ""%1"""
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.BackupEnviar"; Flags: uninsdeletekey; ValueType: string; ValueData: "Enviar Backup"
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.SetDatabaseEncoding"; Flags: uninsdeletekey; ValueType: string; ValueData: "Criar Banco com CHARSET"
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.SetDatabaseEncoding\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\change_db_charset.bat ""%1"""
+
 
 Root: HKCR; Subkey: ".fbk"; Flags: uninsdeletekey; ValueType: string; ValueData: "Ello.Firebird.Backup"
 Root: HKCR; Subkey: ".ebk"; Flags: uninsdeletekey; ValueType: string; ValueData: "Ello.Database.Backup"
@@ -66,7 +71,7 @@ Root: HKCR; Subkey: "Ello.Database\DefaultIcon"; Flags: uninsdeletekey; ValueTyp
 
 Root: HKCR; Subkey: "Ello.Database\shell"; Flags: uninsdeletekey;
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "MUIVerb"; ValueData: "&Manutenção"
-Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "SubCommands"; ValueData: "Ello.Backup;Ello.BackupEnviar;Ello.AbrirISQL"
+Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "SubCommands"; ValueData: "Ello.Backup;Ello.BackupEnviar;Ello.AbrirISQL;Ello.SetDatabaseEncoding"
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "Position"; ValueData: "Bottom"
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
 
