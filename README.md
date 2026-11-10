@@ -80,7 +80,7 @@ O resultado fica em `Output\Ello-Database-Utils.exe`.
 
 O `setup.iss` deve ser mantido em **UTF-8 com BOM** (Inno Setup 6) por causa dos acentos.
 
-### ebak (backup e restauração)
+### ebak / ebakw (backup e restauração)
 
 ```bat
 ebak backup  <banco.ello> [saida.ebk]
@@ -91,6 +91,7 @@ ebak restore <backup.ebk | backup.fbk> [saida.ello]
 - `restore` gera `<backup>.ello` ao lado do backup e **não sobrescreve** um banco existente.
 - O Firebird precisa estar no mesmo computador: os arquivos são lidos e gravados pelo servidor (Services API), e usa `sysdba`/`masterkey` (ou `ISC_USER`/`ISC_PASSWORD`).
 - Ao ser aberto pelo Explorer, espera uma tecla ao terminar para dar tempo de ler o resultado.
+- `ebakw.exe` aceita os mesmos argumentos, mas mostra uma janela com a etapa atual, o tempo decorrido, o tamanho do arquivo sendo gerado e o log do `gbak`. É a versão usada pelos menus do Explorer. (A barra de progresso é indeterminada: o `gbak` não informa percentual. Não há botão cancelar, pois a operação roda no servidor Firebird.)
 
 ### Exportador de XMLs
 
@@ -105,5 +106,5 @@ ebak restore <backup.ebk | backup.fbk> [saida.ello]
 | `usar_banco.c`, `versao_banco.c`                 | Fontes dos programas em C                           |
 | `exportador_xml.cpp`                             | Exportador de XMLs de DF-e (C++, interface gráfica) |
 | `fbclient_x86.def`, `fbclient_x86.rsp`           | Biblioteca de importação do `fbclient.dll` (x86)    |
-| `ebak.cpp`                                       | `ebak`: backup/restauração de bancos (C++)          |
+| `ebak.cpp`, `ebak_gui.cpp`, `ebak_core.cpp/.h`   | `ebak` (CLI) e `ebakw` (janela): backup/restauração |
 | `Icons\`                                         | Ícones dos tipos de arquivo                         |
