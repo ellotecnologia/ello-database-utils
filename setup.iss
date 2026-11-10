@@ -44,9 +44,7 @@ Source: "bin\fixcharset.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\fbstats.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\exportador_xml.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\WebView2Loader.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "gerar-backup.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "restaura-ebk.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "restaura-fbk.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\ebak.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "firebird.msg"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Icons\database.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
 Source: "Icons\database_fbk.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
@@ -57,7 +55,7 @@ Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandS
 
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.AbrirFSQL\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\fsql.exe"" ""%1"""
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup"; Flags: uninsdeletekey; ValueType: string; ValueData: "Gerar Backup"
-Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\gerar-backup.bat"" ""%1"""
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.Backup\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\ebak.exe"" backup ""%1"""
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.SetDatabaseEncoding"; Flags: uninsdeletekey; ValueType: string; ValueData: "Criar Banco com CHARSET"
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.SetDatabaseEncoding\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "cmd.exe /c """"{app}\bin\fixcharset.exe"" ""%1"" & pause"""
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.EstatisticasBanco"; Flags: uninsdeletekey; ValueType: string; ValueData: "Estatísticas do banco"
@@ -94,13 +92,13 @@ Root: HKCR; Subkey: "Ello.Database.Backup"; Flags: uninsdeletekey; ValueType: st
 Root: HKCR; Subkey: "Ello.Database.Backup\DefaultIcon"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\Icons\ello_backup.ico"
 Root: HKCR; Subkey: "Ello.Database.Backup\shell\restaurar"; Flags: uninsdeletekey; ValueType: string; ValueData: "&Restaurar"
 Root: HKCR; Subkey: "Ello.Database.Backup\shell\restaurar"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
-Root: HKCR; Subkey: "Ello.Database.Backup\shell\restaurar\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\restaura-ebk.bat"" ""%1"""
+Root: HKCR; Subkey: "Ello.Database.Backup\shell\restaurar\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\ebak.exe"" restore ""%1"""
 
 Root: HKCR; Subkey: "Ello.Firebird.Backup"; Flags: uninsdeletekey; ValueType: string; ValueData: "Backup Firebird"
 Root: HKCR; Subkey: "Ello.Firebird.Backup\DefaultIcon"; Flags: uninsdeletekey; ValueType: string; ValueData: "{app}\Icons\database_fbk.ico"
 Root: HKCR; Subkey: "Ello.Firebird.Backup\shell\restaurar"; Flags: uninsdeletekey; ValueType: string; ValueData: "&Restaurar"
 Root: HKCR; Subkey: "Ello.Firebird.Backup\shell\restaurar"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
-Root: HKCR; Subkey: "Ello.Firebird.Backup\shell\restaurar\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\restaura-fbk.bat"" ""%1"""
+Root: HKCR; Subkey: "Ello.Firebird.Backup\shell\restaurar\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\ebak.exe"" restore ""%1"""
 
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\bin"; Check: NeedsAddPath('{app}\bin')
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "ISC_USER"; ValueData: "sysdba"

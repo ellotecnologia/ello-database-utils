@@ -9,12 +9,12 @@ ações ao menu de contexto (botão direito).
 | Extensão | Descrição            | Ações no menu de contexto                                      |
 |----------|----------------------|----------------------------------------------------------------|
 | `.ello`  | Banco de dados Ello  | Abrir (fSQL), Usar este banco, Versão do banco, Manutenção     |
-| `.ebk`   | Backup Ello          | Restaurar (descompacta e restaura o backup)                    |
-| `.fbk`   | Backup Firebird      | Restaurar                                                      |
+| `.ebk`   | Backup Ello          | Restaurar (`ebak.exe restore`: descompacta e restaura)         |
+| `.fbk`   | Backup Firebird      | Restaurar (`ebak.exe restore`)                                 |
 
 Submenu **Manutenção** (em arquivos `.ello`):
 
-- **Gerar Backup**: gera um `.fbk` com o `gbak`, compacta para `.ebk` com o 7-Zip e remove o `.fbk`.
+- **Gerar Backup**: `ebak.exe backup`, gera o backup pelo `fbclient` (Services API), compacta para `.ebk` com o 7-Zip e remove o `.fbk`.
 - **Abrir fSQL**: abre o banco no fsql, um shell interativo para Firebird.
 - **Criar Banco com CHARSET**: converte o charset do banco com o `fixcharset.exe`, gerando `<banco>_novo.ello` ao lado do original.
 - **Estatísticas do banco**: abre o `fbstats.exe` com o banco selecionado (requer o WebView2 Runtime da Microsoft).
@@ -80,6 +80,18 @@ O resultado fica em `Output\Ello-Database-Utils.exe`.
 
 O `setup.iss` deve ser mantido em **UTF-8 com BOM** (Inno Setup 6) por causa dos acentos.
 
+### ebak (backup e restauração)
+
+```bat
+ebak backup  <banco.ello> [saida.ebk]
+ebak restore <backup.ebk | backup.fbk> [saida.ello]
+```
+
+- `backup` gera `<banco>.ebk` ao lado do banco (um `.fbk` compactado com o `7za.exe`).
+- `restore` gera `<backup>.ello` ao lado do backup e **não sobrescreve** um banco existente.
+- O Firebird precisa estar no mesmo computador: os arquivos são lidos e gravados pelo servidor (Services API), e usa `sysdba`/`masterkey` (ou `ISC_USER`/`ISC_PASSWORD`).
+- Ao ser aberto pelo Explorer, espera uma tecla ao terminar para dar tempo de ler o resultado.
+
 ### Exportador de XMLs
 
 `bin\exportador_xml.exe` (fonte: `exportador_xml.cpp`) é uma janela para exportar os XMLs de DF-e de um banco Ello: informe o banco, o período de emissão, o modelo e a pasta de destino. É compilado junto com os demais por `nmake` e instalado em `{app}in`.
@@ -93,6 +105,5 @@ O `setup.iss` deve ser mantido em **UTF-8 com BOM** (Inno Setup 6) por causa dos
 | `usar_banco.c`, `versao_banco.c`                 | Fontes dos programas em C                           |
 | `exportador_xml.cpp`                             | Exportador de XMLs de DF-e (C++, interface gráfica) |
 | `fbclient_x86.def`, `fbclient_x86.rsp`           | Biblioteca de importação do `fbclient.dll` (x86)    |
-| `gerar-backup.bat`                               | Gera o backup `.ebk`                                |
-| `restaura-ebk.bat`, `restaura-fbk.bat`           | Restauram backups `.ebk` e `.fbk`                   |
+| `ebak.cpp`                                       | `ebak`: backup/restauração de bancos (C++)          |
 | `Icons\`                                         | Ícones dos tipos de arquivo                         |

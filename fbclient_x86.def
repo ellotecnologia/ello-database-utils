@@ -16,3 +16,8 @@ EXPORTS
  isc_dsql_execute_immediate
  isc_rollback_transaction
  fb_interpret
+ isc_service_attach
+ isc_service_detach
+ isc_service_start
+ isc_service_query
+ isc_vax_integer
