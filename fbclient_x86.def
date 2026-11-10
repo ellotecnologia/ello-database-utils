@@ -10,3 +10,9 @@ EXPORTS
  isc_dsql_prepare
  isc_print_status
  isc_start_transaction
+ isc_open_blob2
+ isc_get_segment
+ isc_close_blob
+ isc_dsql_execute_immediate
+ isc_rollback_transaction
+ fb_interpret

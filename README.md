@@ -18,6 +18,7 @@ Submenu **Manutenção** (em arquivos `.ello`):
 - **Abrir fSQL**: abre o banco no fsql, um shell interativo para Firebird.
 - **Criar Banco com CHARSET**: converte o charset do banco com o `fixcharset.exe`, gerando `<banco>_novo.ello` ao lado do original.
 - **Estatísticas do banco**: abre o `fbstats.exe` com o banco selecionado (requer o WebView2 Runtime da Microsoft).
+- **Exportar XMLs**: abre o `exportador_xml.exe` com o banco selecionado.
 
 Ações diretas:
 
@@ -79,15 +80,9 @@ O resultado fica em `Output\Ello-Database-Utils.exe`.
 
 O `setup.iss` deve ser mantido em **UTF-8 com BOM** (Inno Setup 6) por causa dos acentos.
 
-### Exportador de XMLs (opcional)
+### Exportador de XMLs
 
-`exportador_xml.py` exporta os XMLs de DF-e de um banco Ello (requer Python e `fdb`):
-
-```bat
-python exportador_xml.py --db C:\ello\banco.ello -i 01.01.2019 -f 31.01.2019 -m 55 -p C:\xmls
-```
-
-Para gerar um executável: `nmake exportador` (usa o PyInstaller).
+`bin\exportador_xml.exe` (fonte: `exportador_xml.cpp`) é uma janela para exportar os XMLs de DF-e de um banco Ello: informe o banco, o período de emissão, o modelo e a pasta de destino. É compilado junto com os demais por `nmake` e instalado em `{app}in`.
 
 ## Arquivos
 
@@ -96,8 +91,8 @@ Para gerar um executável: `nmake exportador` (usa o PyInstaller).
 | `setup.iss`                                      | Script do instalador (Inno Setup)                   |
 | `Makefile`                                       | Compila os programas em C com MSVC (`nmake`)        |
 | `usar_banco.c`, `versao_banco.c`                 | Fontes dos programas em C                           |
+| `exportador_xml.cpp`                             | Exportador de XMLs de DF-e (C++, interface gráfica) |
 | `fbclient_x86.def`, `fbclient_x86.rsp`           | Biblioteca de importação do `fbclient.dll` (x86)    |
 | `gerar-backup.bat`                               | Gera o backup `.ebk`                                |
 | `restaura-ebk.bat`, `restaura-fbk.bat`           | Restauram backups `.ebk` e `.fbk`                   |
-| `exportador_xml.py`                              | Exportação de XMLs de DF-e                          |
 | `Icons\`                                         | Ícones dos tipos de arquivo                         |

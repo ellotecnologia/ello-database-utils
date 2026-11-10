@@ -42,6 +42,7 @@ Source: "bin\usar_banco.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bin\versao_banco.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bin\fixcharset.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\fbstats.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "bin\exportador_xml.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\WebView2Loader.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "gerar-backup.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "restaura-ebk.bat"; DestDir: "{app}"; Flags: ignoreversion
@@ -61,6 +62,8 @@ Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandS
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.SetDatabaseEncoding\command"; Flags: uninsdeletekey; ValueType: string; ValueData: "cmd.exe /c """"{app}\bin\fixcharset.exe"" ""%1"" & pause"""
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.EstatisticasBanco"; Flags: uninsdeletekey; ValueType: string; ValueData: "Estatísticas do banco"
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.EstatisticasBanco\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\fbstats.exe"" ""%1"""
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.ExportarXML"; Flags: uninsdeletekey; ValueType: string; ValueData: "Exportar XMLs"
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.ExportarXML\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\exportador_xml.exe"" ""%1"""
 
 
 Root: HKCR; Subkey: ".fbk"; Flags: uninsdeletekey; ValueType: string; ValueData: "Ello.Firebird.Backup"
@@ -72,7 +75,7 @@ Root: HKCR; Subkey: "Ello.Database\DefaultIcon"; Flags: uninsdeletekey; ValueTyp
 
 Root: HKCR; Subkey: "Ello.Database\shell"; Flags: uninsdeletekey;
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "MUIVerb"; ValueData: "&Manutenção"
-Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "SubCommands"; ValueData: "Ello.Backup;Ello.AbrirFSQL;Ello.SetDatabaseEncoding;Ello.EstatisticasBanco"
+Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "SubCommands"; ValueData: "Ello.Backup;Ello.AbrirFSQL;Ello.SetDatabaseEncoding;Ello.EstatisticasBanco;Ello.ExportarXML"
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "Position"; ValueData: "Bottom"
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
 
