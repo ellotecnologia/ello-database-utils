@@ -4,3 +4,8 @@ dist/
 exportador_xml.spec
 *.pyc
 *.exe
+Output/
+bin/*.dll
+bin/*.obj
+bin/*.lib
+bin/*.exp
