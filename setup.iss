@@ -34,7 +34,6 @@ Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortugue
 
 [Files]
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "bin\gbak.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\dev\fsql\fsql.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\fbclient.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\7za.exe"; DestDir: "{app}\bin"; Flags: ignoreversion

@@ -31,7 +31,7 @@ Ações diretas:
 ## O que o instalador faz
 
 - Instala em `C:\Program Files\Ello Database Utils`.
-- Copia `gbak`, `fbclient.dll`, `7za`, `fsql`, `fixcharset`, `fbstats` e `WebView2Loader.dll` para `{app}\bin` e adiciona essa pasta ao `PATH`.
+- Copia `fbclient.dll`, `7za`, `fsql`, `fixcharset`, `fbstats` e `WebView2Loader.dll` para `{app}\bin` e adiciona essa pasta ao `PATH`.
 - Define as variáveis de ambiente de sistema `ISC_USER=sysdba` e `ISC_PASSWORD=masterkey`.
 - Registra os tipos de arquivo e o menu de contexto (precisa de administrador).
   A desinstalação remove as chaves de registro.
@@ -44,7 +44,7 @@ Requisitos:
 - **Inno Setup 6** (para o instalador).
 - Os cabeçalhos do Firebird 2.5 (`ibase.h`), por padrão em `C:\bin\Firebird25\include`
   (ajuste `FB` no `Makefile`).
-- Um `fbclient.dll` e um `gbak.exe` de **32 bits**, em `bin\`. O `fsql.exe` é um programa
+- Um `fbclient.dll` de **32 bits**, em `bin\`. O `fsql.exe` é um programa
   Delphi de 32 bits e precisa de um `fbclient.dll` de 32 bits.
 
 ### 1. Programas em C
@@ -66,7 +66,7 @@ o `fbclient_x86.rsp` mapeia os nomes `stdcall` decorados para os exports do `fbc
 
 O `setup.iss` espera encontrar em `bin\`:
 
-`gbak.exe`, `fbclient.dll`, `7za.exe`, `fixcharset.exe`, `fbstats.exe`, `WebView2Loader.dll`, `usar_banco.exe` e `versao_banco.exe`.
+`fbclient.dll`, `7za.exe`, `fixcharset.exe`, `fbstats.exe`, `WebView2Loader.dll`, `usar_banco.exe` e `versao_banco.exe`.
 
 O `fsql.exe` é copiado direto de `C:\dev\fsql\fsql.exe` (ver `[Files]` no `setup.iss`).
 Os binários (`*.exe`) não são versionados.
