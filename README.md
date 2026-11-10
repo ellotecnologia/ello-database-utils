@@ -19,6 +19,7 @@ Submenu **Manutenção** (em arquivos `.ello`):
 - **Criar Banco com CHARSET**: converte o charset do banco com o `fixcharset.exe`, gerando `<banco>_novo.ello` ao lado do original.
 - **Estatísticas do banco**: abre o `fbstats.exe` com o banco selecionado (requer o WebView2 Runtime da Microsoft).
 - **Exportar XMLs**: abre o `exportador_xml.exe` com o banco selecionado.
+- **Índices inativos**: abre o `indices_inativos.exe`, que lista os índices inativos do banco (`RDB$INDEX_INACTIVE = 1`, exceto os de sistema) e permite reativá-los (`ALTER INDEX ... ACTIVE`), selecionados ou todos.
 
 Ações diretas:
 
@@ -105,6 +106,7 @@ ebak restore <backup.ebk | backup.fbk> [saida.ello]
 | `Makefile`                                       | Compila os programas em C com MSVC (`nmake`)        |
 | `usar_banco.c`, `versao_banco.c`                 | Fontes dos programas em C                           |
 | `exportador_xml.cpp`                             | Exportador de XMLs de DF-e (C++, interface gráfica) |
+| `indices_inativos.cpp`                           | Análise/reativação de índices inativos (C++, GUI)   |
 | `fbclient_x86.def`, `fbclient_x86.rsp`           | Biblioteca de importação do `fbclient.dll` (x86)    |
 | `ebak.cpp`, `ebak_gui.cpp`, `ebak_core.cpp/.h`   | `ebak` (CLI) e `ebakw` (janela): backup/restauração |
 | `Icons\`                                         | Ícones dos tipos de arquivo                         |

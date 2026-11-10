@@ -8,7 +8,7 @@ FB=C:\bin\Firebird25
 CFLAGS=/nologo /O2 /MT /W3 /D_CRT_SECURE_NO_WARNINGS /I"$(FB)\include"
 LDFLAGS=/link /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup
 
-all: bin\usar_banco.exe bin\versao_banco.exe bin\exportador_xml.exe bin\ebak.exe bin\ebakw.exe
+all: bin\usar_banco.exe bin\versao_banco.exe bin\exportador_xml.exe bin\ebak.exe bin\ebakw.exe bin\indices_inativos.exe
 
 bin:
 	@if not exist bin mkdir bin
@@ -31,5 +31,8 @@ bin\ebakw.exe: ebak_gui.cpp ebak_core.cpp ebak_core.h bin\fbclient_x86.lib
 bin\exportador_xml.exe: exportador_xml.cpp bin\fbclient_x86.lib
 	cl $(CFLAGS) /EHsc /Fo"bin\\" /Fe"$@" exportador_xml.cpp bin\fbclient_x86.lib @fbclient_x86.rsp
 
+bin\indices_inativos.exe: indices_inativos.cpp bin\fbclient_x86.lib
+	cl $(CFLAGS) /EHsc /Fo"bin\\" /Fe"$@" indices_inativos.cpp bin\fbclient_x86.lib @fbclient_x86.rsp
+
 clean:
-	-del bin\usar_banco.exe bin\versao_banco.exe bin\exportador_xml.exe bin\ebak.exe bin\ebakw.exe bin\*.obj bin\fbclient_x86.lib bin\fbclient_x86.exp
+	-del bin\usar_banco.exe bin\versao_banco.exe bin\exportador_xml.exe bin\ebak.exe bin\ebakw.exe bin\indices_inativos.exe bin\*.obj bin\fbclient_x86.lib bin\fbclient_x86.exp

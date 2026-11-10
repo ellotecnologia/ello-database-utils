@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ello Database Utils"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.1"
 #define MyAppPublisher "Ello tecnologia"
 #define MyAppURL "http://www.ellotecnologia.com/"
 
@@ -46,6 +46,7 @@ Source: "bin\exportador_xml.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\WebView2Loader.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\ebak.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "bin\ebakw.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "bin\indices_inativos.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "firebird.msg"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Icons\database.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
 Source: "Icons\database_fbk.ico"; DestDir: "{app}\Icons"; Flags: ignoreversion
@@ -63,6 +64,8 @@ Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandS
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.EstatisticasBanco\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\fbstats.exe"" ""%1"""
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.ExportarXML"; Flags: uninsdeletekey; ValueType: string; ValueData: "Exportar XMLs"
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.ExportarXML\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\exportador_xml.exe"" ""%1"""
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.IndicesInativos"; Flags: uninsdeletekey; ValueType: string; ValueData: "Índices inativos"
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Ello.IndicesInativos\command"; Flags: uninsdeletekey; ValueType: string; ValueData: """{app}\bin\indices_inativos.exe"" ""%1"""
 
 
 Root: HKCR; Subkey: ".fbk"; Flags: uninsdeletekey; ValueType: string; ValueData: "Ello.Firebird.Backup"
@@ -74,7 +77,7 @@ Root: HKCR; Subkey: "Ello.Database\DefaultIcon"; Flags: uninsdeletekey; ValueTyp
 
 Root: HKCR; Subkey: "Ello.Database\shell"; Flags: uninsdeletekey;
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "MUIVerb"; ValueData: "&Manutenção"
-Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "SubCommands"; ValueData: "Ello.Backup;Ello.AbrirFSQL;Ello.SetDatabaseEncoding;Ello.EstatisticasBanco;Ello.ExportarXML"
+Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "SubCommands"; ValueData: "Ello.Backup;Ello.AbrirFSQL;Ello.SetDatabaseEncoding;Ello.EstatisticasBanco;Ello.ExportarXML;Ello.IndicesInativos"
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "Position"; ValueData: "Bottom"
 Root: HKCR; Subkey: "Ello.Database\shell\manutencao"; Flags: uninsdeletekey; ValueType: string; ValueName: "Icon"; ValueData: "{app}\Icons\database.ico"
 
